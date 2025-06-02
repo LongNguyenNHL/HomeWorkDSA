@@ -2,6 +2,9 @@ package be8;
 
 public class FindIntervalInArray {
 	
+	// Time Complexity: O(n)
+	// Space Complexity: O(n)
+	// Additional Space: O(R)
 	public static int solution (int[] A, int L, int R) {
 		
 		// Example Test Case 2
