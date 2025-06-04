@@ -15,7 +15,7 @@ public class FindIntervalInArray {
 		// => fragment = [0,0,5,4,3]
 		for (int i = 0; i < A.length / 2 + 1; i++) {
 			if ((A[i] <= R) && (A[i] >= L)) {
-				fragment[A[i]] = i + 1;
+				fragment[A[i]] = i + 1; // +1 để không trung với trường hợp có index 0
 			}
 			int j = A.length - i - 1;
 			if ((A[j] <= R) && (A[j] >= L)) {
