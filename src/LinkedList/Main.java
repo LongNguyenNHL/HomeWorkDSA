@@ -26,6 +26,5 @@ public class Main {
 		ll.delete(5);
 		
 		ll.printList();
-	
 	}
 }
