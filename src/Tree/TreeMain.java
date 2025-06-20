@@ -11,50 +11,63 @@ public class TreeMain {
 		tree.root = root;
 		
 		Node node = new Node();
-		node.value = 30;
+		node.value = 2;
 		tree.root.children.add(node);
 		
 		node = new Node();
-		node.value = 40;
+		node.value = 3;
 		tree.root.children.add(node);
 		
-		// add node 20 at node 30
 		node = new Node();
-		node.value = 20;
-		Node findNode = tree.findNodeDFS(30);
-		findNode.children.add(node);
+		node.value = 4;
+		tree.root.children.add(node);
 		
-		// add node 10 at node 30
-		node = new Node();
-		node.value = 10;
-		findNode = tree.findNodeDFS(30);
-		findNode.children.add(node);
-		
-		// add node 5 at node 10
+		// add node 5 at node 2
 		node = new Node();
 		node.value = 5;
-		findNode = tree.findNodeDFS(10);
+		Node findNode = tree.findNodeDFSVersion2(2);
 		findNode.children.add(node);
 		
-		// add node 50 at node 40
+		// add node 6 at node 2
 		node = new Node();
-		node.value = 50;
-		findNode = tree.findNodeDFS(40);
+		node.value = 6;
+		findNode = tree.findNodeDFSVersion2(2);
 		findNode.children.add(node);
 		
-		// add node 100 at node 1
+		// add node 7 at node 3
 		node = new Node();
-		node.value = 100;
-		findNode = tree.findNodeBFS(1);
+		node.value = 7;
+		findNode = tree.findNodeDFSVersion2(3);
 		findNode.children.add(node);
+		
+		// add node 10 at node 3
+		node = new Node();
+		node.value = 10;
+		findNode = tree.findNodeDFSVersion2(3);
+		findNode.children.add(node);
+		
+		// add node 8 at node 6
+		node = new Node();
+		node.value = 8;
+		findNode = tree.findNodeDFSVersion2(6);
+		findNode.children.add(node);
+		
+		// add node 9 at node 6
+		node = new Node();
+		node.value = 9;
+		findNode = tree.findNodeDFSVersion2(6);
+		findNode.children.add(node);
+		
+
 		
 		// Check
 		
-		findNode = tree.findNodeDFS(5);
-		System.out.println(findNode.value);
+		findNode = tree.findNodeDFSVersion2(4);
 		
-		findNode = tree.findNodeBFS(100);
-		System.out.println(findNode.value);
-
+		if (findNode != null) {
+			System.out.println(findNode.value);
+		} else {
+			System.out.println("Not have value in tree");
+		}
 	}
 }

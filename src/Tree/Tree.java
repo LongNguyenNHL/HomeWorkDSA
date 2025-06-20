@@ -24,6 +24,30 @@ public class Tree {
 		return null;
 	}
 	
+	// DFS - Version 2 - Leaf to Branch 
+	public Node findNodeDFSVersion2 (int value) {
+		ArrayList<Node> listChildren = new ArrayList<>();
+		ArrayList<Node> listSeenChildren = new ArrayList<>();
+		listChildren.add(root);
+		
+		while (!listChildren.isEmpty()) {
+			Node currentNode = listChildren.get(listChildren.size() - 1);
+			
+			if (!listSeenChildren.containsAll(currentNode.children)) {
+				for (int i = currentNode.children.size() - 1 ; i >= 0; i--) {
+					listChildren.add(currentNode.children.get(i));
+				}
+			} else {
+				if (currentNode.value == value) {
+					return currentNode;
+				} else {
+					listSeenChildren.add(listChildren.remove(listChildren.size() - 1));
+				}
+			}
+		}
+		return null;
+	}
+	
 	// BFS - Breadth-First Search
 	public Node findNodeBFS (int value) {
 		ArrayList<Node> listChildren = new ArrayList<>();
