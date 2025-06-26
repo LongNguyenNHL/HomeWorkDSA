@@ -25,6 +25,7 @@ public class Tree {
 	}
 	
 	// DFS - Version 2 - Leaf to Branch 
+	// Sửa bài dùng linked list
 	public Node findNodeDFSVersion2 (int value) {
 		ArrayList<Node> listChildren = new ArrayList<>();
 		ArrayList<Node> listSeenChildren = new ArrayList<>();
@@ -48,6 +49,22 @@ public class Tree {
 		return null;
 	}
 	
+	public Node findNodeDFSVersion3(Node node, int value) {
+		if (node == null) {
+			return null;
+			}
+		for (Node child : node.children) {
+			Node found = findNodeDFSVersion3(child, value);
+			if (found != null) {
+				return found;
+			}
+		}
+		
+		if (node.value == value) {
+			return node;
+		}
+		return null;
+	}
 	// BFS - Breadth-First Search
 	public Node findNodeBFS (int value) {
 		ArrayList<Node> listChildren = new ArrayList<>();

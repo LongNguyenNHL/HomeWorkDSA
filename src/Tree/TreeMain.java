@@ -49,14 +49,14 @@ public class TreeMain {
 		// add node 8 at node 6
 		node = new Node();
 		node.value = 8;
-		findNode = tree.findNodeDFSVersion2(6);
+		findNode = tree.findNodeDFSVersion3(root, 6);
 		findNode.children.add(node);
 		
-		// add node 9 at node 6
-		node = new Node();
-		node.value = 9;
-		findNode = tree.findNodeDFSVersion2(6);
-		findNode.children.add(node);
+//		// add node 9 at node 6
+//		node = new Node();
+//		node.value = 9;
+//		findNode = tree.findNodeDFSVersion2(6);
+//		findNode.children.add(node);
 		
 
 		
