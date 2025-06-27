@@ -1,25 +1,31 @@
 package BinaryTree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Tree {
 	Node root;
 	
-	public boolean isBalance(Node root) {
-		Node currentNode = root; // 1
-		ArrayList<Node> NodeListLeft = new ArrayList<>();
-		ArrayList<Node> NodeListRight = new ArrayList<>();
-		int countLeft = 0;
-		int countRight = 0;
+	// Check node is balance or not 
+	public boolean isBalance(Node node) {
+		if (node == null) {
+			return true;
+		}
+		
+		Node currentNode = node; // 1
+		LinkedList<Node> NodeListLeft = new LinkedList<>();
+		LinkedList<Node> NodeListRight = new LinkedList<Node>();
+		int heightLeft = 0;
+		int heightRight = 0;
 		
 		if (currentNode.left != null) {
 			NodeListLeft.add(currentNode.left); // {2}
-			countLeft++;
+			heightLeft++;
 		}
 		
 		if (currentNode.right != null) {
 			NodeListRight.add(currentNode.right); // {3}
-			countRight++;
+			heightRight++;
 		}
 		
 		while (!NodeListLeft.isEmpty()) {
@@ -33,7 +39,7 @@ public class Tree {
 			}
 			
 			if (currentNode.left != null || currentNode.right != null) {
-				countLeft++; // 2 -> 3
+				heightLeft++; // 2 -> 3
 			}
 		}
 		
@@ -48,20 +54,110 @@ public class Tree {
 			}
 			
 			if (currentNode.left != null || currentNode.right != null) {
-				countRight++; // 2 -> 3
+				heightRight++; // 2 -> 3
 			}
 		}
-		System.out.println(countLeft);
-		System.out.println(countRight);
-		if (Math.abs(countLeft - countRight) >= 2) {
+		if (Math.abs(heightLeft - heightRight) >= 2) {
 			return false;
 		}
 		
 		return true;
 	}
 	
+	// Return List of Imbalance Node
+	public ArrayList<Node> findImbalanceNode(Node node) {
+		ArrayList<Node> imbalanceNode = new ArrayList<Node>();
+
+		if (node == null) {
+			return imbalanceNode;
+		}
+		
+		LinkedList<Node> nodeList = new LinkedList<Node>();
+		nodeList.add(node);
+		
+		while (!nodeList.isEmpty()) {
+			Node currentNode = nodeList.remove(0);
+			
+			if (!isBalance(currentNode)) {
+				imbalanceNode.add(currentNode);
+			}
+			
+			if (currentNode.left != null) {
+				nodeList.add(currentNode.left);
+			}
+			
+			if (currentNode.right != null) {
+				nodeList.add(currentNode.right);
+			}
+		}
+		
+		return imbalanceNode;
+		
+//		LinkedList<Node> NodeListLeft = new LinkedList<Node>();
+//		LinkedList<Node> NodeListRight = new LinkedList<Node>();
+//		
+//		if (currentNode.left != null) {
+//			NodeListLeft.add(currentNode.left); // {2}
+//		}
+//		
+//		if (currentNode.right != null) {
+//			NodeListRight.add(currentNode.right); // {3}
+//		}
+//		
+//		while (!NodeListLeft.isEmpty()) {
+//			currentNode = NodeListLeft.remove(NodeListLeft.size() - 1); // {2}
+//			
+//			if (currentNode.right != null) {
+//				NodeListLeft.add(currentNode.right); 
+//			}
+//			
+//			if (currentNode.left != null) {
+//				NodeListLeft.add(currentNode.left); 
+//			}
+//			
+//			if (!isBalance(currentNode)) {
+//				imbalanceNode.add(currentNode);
+//			}
+//		}
+//		
+//		while (!NodeListRight.isEmpty()) {
+//			currentNode = NodeListRight.remove(NodeListRight.size() - 1);
+//			
+//			if (currentNode.right != null) {
+//				NodeListRight.add(currentNode.right); // {5} -> {5,7}
+//			}
+//			
+//			if (currentNode.left != null) {
+//				NodeListRight.add(currentNode.left); // {5,4} -> {5,7,6} -> {5,7} -> {5,8}
+//			}
+//			
+//			if (!isBalance(currentNode)) {
+//				imbalanceNode.add(currentNode);
+//			}
+//		}
+//		return imbalanceNode;
+	}
 	
-	public ArrayList<Node> findImbalanceNode() {
+	public Node findNode(int value) {
+		LinkedList<Node> nodeList = new LinkedList<Node>();
+		nodeList.add(root);
+		
+		while (!nodeList.isEmpty()) {
+			Node currentNode = nodeList.remove(0);
+			
+			if (currentNode.value == value) {
+				return currentNode;
+			}
+			
+			if (currentNode.left != null) {
+				nodeList.add(currentNode.left);
+			}
+			
+			if (currentNode.right != null) {
+				nodeList.add(currentNode.right);
+			}
+		}
+
 		return null;
 	}
 }

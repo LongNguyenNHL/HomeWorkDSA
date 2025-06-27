@@ -1,5 +1,7 @@
 package BinaryTree;
 
+import java.util.ArrayList;
+
 public class Main {
 	
 	public static void main(String[] args) {
@@ -12,15 +14,34 @@ public class Main {
 		
 		// Add node 2 at left root
 		Node node = new Node();
-//		node.value = 2;
-//		tree.root.left = node;
+		node.value = 2;
+		tree.root.left = node;
 		
 		// Add node 3 at right root
 		node = new Node();
 		node.value = 3;
 		tree.root.right = node;
 		
-		Node currentNode = tree.root.right;
+		Node currentNode = tree.root.left;
+		
+		// Add node 9 at left node 2
+		node = new Node();
+		node.value = 9;
+		currentNode.left = node;
+		
+		// Add node 10 at right node 2
+		node = new Node();
+		node.value = 10;
+		currentNode.right = node;
+		
+		currentNode = currentNode.left;
+		
+//		// Add node 11 at left node 9
+//		node = new Node();
+//		node.value = 11;
+//		currentNode.left = node;
+		
+		currentNode = tree.root.right;
 		
 		// Add node 4 at left node 3
 		node = new Node();
@@ -49,7 +70,17 @@ public class Main {
 		node.value = 8;
 		currentNode.left = node;
 		
-		boolean result = tree.isBalance(root);
+		// Check
+		Node findNode = tree.findNode(1);
+		
+		boolean result = tree.isBalance(findNode);
 		System.out.println(result);
+		
+		ArrayList<Node> imbalanceNode = tree.findImbalanceNode(findNode);
+		System.out.print("{");
+		for (Node n : imbalanceNode) {
+			System.out.print(n.value + ", ");
+		}
+		System.out.print("}");
 	}
 }
