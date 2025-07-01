@@ -33,13 +33,6 @@ public class Main {
 		node.value = 10;
 		currentNode.right = node;
 		
-		currentNode = currentNode.left;
-		
-//		// Add node 11 at left node 9
-//		node = new Node();
-//		node.value = 11;
-//		currentNode.left = node;
-		
 		currentNode = tree.root.right;
 		
 		// Add node 4 at left node 3
@@ -69,28 +62,27 @@ public class Main {
 		node.value = 8;
 		currentNode.left = node;
 		
-//		// Check
-//		Node findNode = tree.findNode(1);
-//		
-//		boolean result = tree.isBalance(findNode);
-//		System.out.println(result);
-//		
-//		ArrayList<Node> imbalanceNode = tree.findImbalanceNode(findNode);
-//		System.out.print("{");
-//		for (Node n : imbalanceNode) {
-//			System.out.print(n.value + ", ");
-//		}
-//		System.out.print("}");
-		
-		// Check
-		
-		ArrayList<Node> rotatedNode = tree.findrotatedNode(root);
-		
-		boolean result = tree.isBalance(rotatedNode);
+		// Check before rotating
+		ArrayList<Node> imbalanceNode = tree.findImbalanceNode(root);
+		boolean result = tree.isBalance(imbalanceNode);
 		System.out.println(result);
 		
 		System.out.print("{");
-		for (Node n : rotatedNode) {
+		for (Node n : imbalanceNode) {
+			System.out.print(n.value + ", ");
+		}
+		System.out.println("}");
+		
+		// Rotating Imbalance Node 
+		tree.rotatingNode(root);
+		
+		// Check after rotating
+		imbalanceNode = tree.findImbalanceNode(root);
+		result = tree.isBalance(imbalanceNode);
+		System.out.println(result);
+		
+		System.out.print("{");
+		for (Node n : imbalanceNode) {
 			System.out.print(n.value + ", ");
 		}
 		System.out.println("}");
