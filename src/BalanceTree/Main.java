@@ -1,11 +1,10 @@
-package BinaryTree;
+package BalanceTree;
 
 import java.util.ArrayList;
 
 public class Main {
-	
 	public static void main(String[] args) {
-		TreeVersion2 tree = new TreeVersion2();
+		Tree tree = new Tree();
 		
 		Node root = new Node();
 		root.value = 1;
@@ -85,16 +84,15 @@ public class Main {
 		
 		// Check
 		
-		ArrayList<Node> imbalanceNode = tree.findImbalanceNode(root);
+		ArrayList<Node> rotatedNode = tree.findrotatedNode(root);
 		
-		boolean result = tree.isBalance(imbalanceNode);
+		boolean result = tree.isBalance(rotatedNode);
 		System.out.println(result);
 		
 		System.out.print("{");
-		for (Node n : imbalanceNode) {
+		for (Node n : rotatedNode) {
 			System.out.print(n.value + ", ");
 		}
 		System.out.println("}");
-		
 	}
 }
