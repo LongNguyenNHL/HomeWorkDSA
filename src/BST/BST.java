@@ -12,6 +12,7 @@ public class BST {
 	}
 	
 	// Build BST by AVL Tree
+	// Để Insert N phần từ thì tôns O(nlog(n))
 	// Insert: Time Complexity O(logN); Space Complexity: O(logN)
 	private Node insert(Node node, int value) {
 		if (node == null) {
@@ -95,6 +96,7 @@ public class BST {
 		System.out.println();
 	}
 	
+	// Time Complexity & Space Complexity: O(logN)
 	public Node findNode(int value) {
 		if (root == null) {
 			return null;
